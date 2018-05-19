@@ -2,6 +2,7 @@
 from tkinter import Tk
 from tkinter import Canvas
 from time import sleep as delay
+import os          #os for playing sound.
 
 from bubble_sort import bubble_sort
 from merge_sort import merge_sort
@@ -10,6 +11,7 @@ from shell_sort import shell_sort
 
 from dimensions import *
 import dimensions
+
 class stick:
     def __init__(self, number, stick_width = 2):
         self.number = number
@@ -18,6 +20,7 @@ class stick:
         self.stick_width = stick_width
     def get_height(self, max):
         self.height = self.number/max
+        self.freq = min_freq + (max_freq-min_freq)*self.height
         return self.height
     def update(self, x1, x2, y):
         self.x1 = x1
@@ -80,6 +83,7 @@ for stk in sticks:
 def replace(i, color, num = 'nan', time = 0.001):
     import random
     if i<len(drawn_sticks):
+        os.system('play --no-show-progress --null --channels 1 synth %s sine %f' % (duration, drawn_sticks[i][0].freq))
         (stk, stk_rect) = drawn_sticks[i]
         drawn_sticks[i] = update(window, stk, stk_rect, color = color, num = num)
         delay(time)
@@ -89,7 +93,7 @@ def replace(i, color, num = 'nan', time = 0.001):
 def anim(i, num, time = 0.001):
     replace(i, 'black', num, time)
     replace(i, 'red', num, time)
-
+    
 dimensions.anim = anim
 
 a = drawn_sticks
