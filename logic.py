@@ -4,6 +4,8 @@ from tkinter import Canvas
 from time import sleep as delay
 from bubble_sort import bubble_sort
 from merge_sort import merge_sort
+from dimensions import *
+import dimensions
 class stick:
     def __init__(self, number, stick_width = 2):
         self.number = number
@@ -51,18 +53,10 @@ def update(window, stick, stick_rect, color, num = 'nan'):
 
 #initial setup.
 root = Tk()
-stick_width = 1.5
-last_x = 0
-dims = {'x':1000, 'y':600}
+
 N = int(dims['x']/stick_width)
 root.geometry(str(dims['x'])+'x'+str(dims['y']))
 window = window(root, dims['x'], dims['y'])
-
-#colors
-import colorsys
-HSV_tuples = [(x*1.0/N, 0.5, 0.5) for x in range(N)]
-RGB_tuples = list(map(lambda x: colorsys.hsv_to_rgb(*x), HSV_tuples))
-print('RGB_tuples', RGB_tuples)
 
 
 #array setup.
@@ -91,9 +85,9 @@ def replace(i, color, num = 'nan', time = 0.001):
 def anim(i, num, time = 0.001):
     replace(i, 'black', num, time)
     replace(i, 'red', num, time)
-
+dimensions.anim = anim
 a = drawn_sticks
-#merge_sort(anim, a, 0.000001)
+merge_sort(anim, a, 0.000001)
 bubble_sort(anim, a, 0)
 
 window.root.mainloop()
