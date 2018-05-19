@@ -10,7 +10,7 @@ from merge_sort import merge_sort
 from comb_sort import comb_sort
 from shell_sort import shell_sort
 from quicksort import quick_sort
-
+from cocktail_sort import cocktail_sort
 
 from dimensions import *
 import dimensions
@@ -101,6 +101,7 @@ dimensions.anim = anim
 
 a = drawn_sticks
 
+cocktail_sort(anim, a, 0.0)
 gnome_sort(anim, a, 0.0)
 quick_sort(anim, a, 0.0)
 comb_sort(anim, a, 0)
