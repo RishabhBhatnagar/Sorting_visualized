@@ -102,13 +102,25 @@ dimensions.anim = anim
 
 a = drawn_sticks
 
-radix_sort(anim, a, 0.0001)
-cocktail_sort(anim, a, 0.0)
-gnome_sort(anim, a, 0.0)
-quick_sort(anim, a, 0.0)
-comb_sort(anim, a, 0)
-shell_sort(anim, a, 0.0)
-merge_sort(anim, a, 0.0)
-bubble_sort(anim, a, 0.0)
+options = lambda time : (anim, a, time)
 
+choice = int(input("""
+1.radix_sort
+2.cocktail_sort
+3.gnome_sort
+4.quick_sort
+5.comb_sort
+6.shell_sort
+7.merge_sort
+8.bubble_sort
+Enter your choice : """))
+
+if   choice == 1 : radix_sort(*options(0.0001))
+elif choice == 2 : cocktail_sort(*options(0))
+elif choice == 3 : gnome_sort(*options(0))
+elif choice == 4 : quick_sort(*options(0))
+elif choice == 5 : comb_sort(*options(0))
+elif choice == 6 : shell_sort(*options(0))
+elif choice == 7 : merge_sort(*options(0))
+elif choice == 8 : bubble_sort(*options(0))
 window.root.mainloop()
