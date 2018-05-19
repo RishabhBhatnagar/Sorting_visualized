@@ -2,9 +2,12 @@
 from tkinter import Tk
 from tkinter import Canvas
 from time import sleep as delay
+
 from bubble_sort import bubble_sort
 from merge_sort import merge_sort
 from comb_sort import comb_sort
+from shell_sort import shell_sort
+
 from dimensions import *
 import dimensions
 class stick:
@@ -86,8 +89,12 @@ def replace(i, color, num = 'nan', time = 0.001):
 def anim(i, num, time = 0.001):
     replace(i, 'black', num, time)
     replace(i, 'red', num, time)
+
 dimensions.anim = anim
+
 a = drawn_sticks
+
+shell_sort(anim, a, 0.0001)
 comb_sort(anim, a, 0.000001)
 merge_sort(anim, a, 0.000001)
 bubble_sort(anim, a, 0)
