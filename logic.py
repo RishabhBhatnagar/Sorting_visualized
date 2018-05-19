@@ -4,10 +4,13 @@ from tkinter import Canvas
 from time import sleep as delay
 import os          #os for playing sound.
 
+from gnome_sort import gnome_sort
 from bubble_sort import bubble_sort
 from merge_sort import merge_sort
 from comb_sort import comb_sort
 from shell_sort import shell_sort
+from quicksort import quick_sort
+
 
 from dimensions import *
 import dimensions
@@ -83,7 +86,7 @@ for stk in sticks:
 def replace(i, color, num = 'nan', time = 0.001):
     import random
     if i<len(drawn_sticks):
-        os.system('play --no-show-progress --null --channels 1 synth %s sine %f' % (duration, drawn_sticks[i][0].freq))
+        #os.system('play --no-show-progress --null --channels 1 synth %s sine %f' % (duration, drawn_sticks[i][0].freq))
         (stk, stk_rect) = drawn_sticks[i]
         drawn_sticks[i] = update(window, stk, stk_rect, color = color, num = num)
         delay(time)
@@ -98,9 +101,11 @@ dimensions.anim = anim
 
 a = drawn_sticks
 
-shell_sort(anim, a, 0.0001)
-comb_sort(anim, a, 0.000001)
-merge_sort(anim, a, 0.000001)
-bubble_sort(anim, a, 0)
+gnome_sort(anim, a, 0.0)
+quick_sort(anim, a, 0.0)
+comb_sort(anim, a, 0)
+shell_sort(anim, a, 0.0)
+merge_sort(anim, a, 0.0)
+bubble_sort(anim, a, 0.0)
 
 window.root.mainloop()
